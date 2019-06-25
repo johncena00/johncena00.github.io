@@ -93,7 +93,7 @@
 <li><p>docker-compose.yml描述檔案</p>
 <ul>
 <li>volumes對應位置 .env檔案 設定本機位置 </li>
-<li>environment可以改時區<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">version: &quot;3&quot;</span><br><span class="line">    services:</span><br><span class="line">    jenkins_server:</span><br><span class="line">    image: jenkins</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;50080:8080&quot;</span><br><span class="line">      - &quot;50000:50000&quot;</span><br><span class="line">    volumes:</span><br><span class="line">      - $&#123;JENKINS_DATA&#125;:/var/jenkins_home</span><br><span class="line">    container_name: hijenkins</span><br><span class="line">    environment:</span><br><span class="line">      TZ: &quot;Asia/Taipei&quot;</span><br></pre></td></tr></table></figure>
+<li>environment可以改時區<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3"</span></span><br><span class="line"><span class="attr">    services:</span></span><br><span class="line"><span class="attr">    jenkins_server:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">jenkins</span></span><br><span class="line"><span class="attr">    ports:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"50080:8080"</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"50000:50000"</span></span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">$&#123;JENKINS_DATA&#125;:/var/jenkins_home</span></span><br><span class="line"><span class="attr">    container_name:</span> <span class="string">hijenkins</span></span><br><span class="line"><span class="attr">    environment:</span></span><br><span class="line"><span class="attr">      TZ:</span> <span class="string">"Asia/Taipei"</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -106,7 +106,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/25/jenkins/" data-id="cjxbfmo940001894rez511k4c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/25/jenkins/" data-id="cjxbg0xdm0001a64r9du215w1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CI-CD/">CI/CD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jenkins/">jenkins</a></li></ul>
@@ -147,7 +147,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/28/django心得報告/" data-id="cjxbfmo8z0000894rnwkpnhne" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/28/django心得報告/" data-id="cjxbg0xdh0000a64rbdir9ess" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/">Django</a></li></ul>
