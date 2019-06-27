@@ -5,20 +5,20 @@
   
 
   
-  <title>django心得報告 | devilcry&#39;s 開發筆記</title>
+  <title>git submoudle vs git subtree | devilcry&#39;s 開發筆記</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="參加此課程主要目標為增加python程式見識的廣度以及未來朝接案方向邁進，原本工作在前端(JS)要寫一大堆驗證表單煩雜的程式，想不到django可以利用設定的方式就將其完成。 雖然只有短短的幾週django課程，但已經是一個麻雀雖小，五臟俱全的購物商務網站，還有串接到金流以及信箱系統，與實務作為一個完美的結合，但因上課時間較短，內容又較為繁重，需要大量地練習程式碼以及吸收，課餘如果沒有認真練習上課">
-<meta name="keywords" content="Django">
+  <meta name="description" content="git管理子項目對於一些比較大的工程,為了便於複用,常常需要抽取子專案。通常專案中的共用UI、共用底層邏輯、共用第三方庫抽出來做git管理子項目。這時候git提供了兩種管理子專案的方式，submodule和subtree。 有人對submodule和subtree的區別做出一個總結:  submodule is link; subtree is copy。">
+<meta name="keywords" content="git">
 <meta property="og:type" content="article">
-<meta property="og:title" content="django心得報告">
-<meta property="og:url" content="http://yoursite.com/2019/05/28/django心得報告/index.html">
+<meta property="og:title" content="git submoudle vs git subtree">
+<meta property="og:url" content="http://yoursite.com/2019/06/25/git/index.html">
 <meta property="og:site_name" content="devilcry&#39;s 開發筆記">
-<meta property="og:description" content="參加此課程主要目標為增加python程式見識的廣度以及未來朝接案方向邁進，原本工作在前端(JS)要寫一大堆驗證表單煩雜的程式，想不到django可以利用設定的方式就將其完成。 雖然只有短短的幾週django課程，但已經是一個麻雀雖小，五臟俱全的購物商務網站，還有串接到金流以及信箱系統，與實務作為一個完美的結合，但因上課時間較短，內容又較為繁重，需要大量地練習程式碼以及吸收，課餘如果沒有認真練習上課">
+<meta property="og:description" content="git管理子項目對於一些比較大的工程,為了便於複用,常常需要抽取子專案。通常專案中的共用UI、共用底層邏輯、共用第三方庫抽出來做git管理子項目。這時候git提供了兩種管理子專案的方式，submodule和subtree。 有人對submodule和subtree的區別做出一個總結:  submodule is link; subtree is copy。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-25T08:06:23.807Z">
+<meta property="og:updated_time" content="2019-06-27T02:10:36.354Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="django心得報告">
-<meta name="twitter:description" content="參加此課程主要目標為增加python程式見識的廣度以及未來朝接案方向邁進，原本工作在前端(JS)要寫一大堆驗證表單煩雜的程式，想不到django可以利用設定的方式就將其完成。 雖然只有短短的幾週django課程，但已經是一個麻雀雖小，五臟俱全的購物商務網站，還有串接到金流以及信箱系統，與實務作為一個完美的結合，但因上課時間較短，內容又較為繁重，需要大量地練習程式碼以及吸收，課餘如果沒有認真練習上課">
+<meta name="twitter:title" content="git submoudle vs git subtree">
+<meta name="twitter:description" content="git管理子項目對於一些比較大的工程,為了便於複用,常常需要抽取子專案。通常專案中的共用UI、共用底層邏輯、共用第三方庫抽出來做git管理子項目。這時候git提供了兩種管理子專案的方式，submodule和subtree。 有人對submodule和subtree的區別做出一個總結:  submodule is link; subtree is copy。">
   
     <link rel="alternate" href="/atom.xml" title="devilcry&#39;s 開發筆記" type="application/atom+xml">
   
@@ -65,14 +65,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-django心得報告" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-git" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/05/28/django心得報告/" class="article-date">
-  <time datetime="2019-05-28T13:15:37.000Z" itemprop="datePublished">2019-05-28</time>
+    <a href="/2019/06/25/git/" class="article-date">
+  <time datetime="2019-06-25T08:09:41.000Z" itemprop="datePublished">2019-06-25</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/心得報告/">心得報告</a>
+    <a class="article-category-link" href="/categories/版控/">版控</a>
   </div>
 
   </div>
@@ -83,7 +83,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      django心得報告
+      git submoudle vs git subtree
     </h1>
   
 
@@ -91,17 +91,40 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>參加此課程主要目標為增加python程式見識的廣度以及未來朝接案方向邁進，原本工作在前端(JS)要寫一大堆驗證表單煩雜的程式，想不到django可以利用設定的方式就將其完成。</p>
-<p>雖然只有短短的幾週django課程，但已經是一個麻雀雖小，五臟俱全的購物商務網站，還有串接到金流以及信箱系統，與實務作為一個完美的結合，但因上課時間較短，內容又較為繁重，需要大量地練習程式碼以及吸收，課餘如果沒有認真練習上課內容及作業的話，會比較跟不上進度，尤其每張投影片列出的參考資料一定要去了解一下。</p>
-<p><a href="https://cjltsod.kktix.cc/events/django-2019-spring-taipei?fbclid=IwAR0-EzxYr9fuJJ9CpJ7n797fwao10EnrnAHAUlk_1Ln7r8nn-EdLFo3uWu" target="_blank" rel="noopener">課程活動</a></p>
+        <h2 id="git管理子項目"><a href="#git管理子項目" class="headerlink" title="git管理子項目"></a>git管理子項目</h2><p>對於一些比較大的工程,為了便於複用,常常需要抽取子專案。通常專案中的共用UI、共用底層邏輯、共用第三方庫抽出來做git管理子項目。這時候git提供了兩種管理子專案的方式，submodule和subtree。</p>
+<p>有人對submodule和subtree的區別做出一個總結:  <strong>submodule is link; subtree is copy</strong>。<br><a id="more"></a></p>
+<h3 id="submodule"><a href="#submodule" class="headerlink" title="submodule"></a>submodule</h3><p>container 與 module 各自都是獨立的 git repo</p>
+<p>submodule需做一次commit </p>
+<p>父層repo需將子層的commitID也要推送上去</p>
+<h4 id="submodule的坑"><a href="#submodule的坑" class="headerlink" title="submodule的坑"></a>submodule的坑</h4><ol>
+<li><p>submodule更新完後並push，但主repo沒push新meta檔到伺服器上，另一開發者git pull之後submodule會停留在未修改前的版本。</p>
+</li>
+<li><p>假設一切正常，主repo有最新submodule的變動檔案，開發者git submodule update並不會將submodule切到任何branch，所以默認下的submodule的repo會停留在一個detached HEAD（游離狀態)。</p>
+</li>
+</ol>
+<h4 id="修改submodule的坑"><a href="#修改submodule的坑" class="headerlink" title="修改submodule的坑"></a>修改submodule的坑</h4><ol>
+<li><p>常見的做法切到 submodule 的目錄，然後做修改，然後 commit 和 push。</p>
+</li>
+<li><p>如果你不慎忘記切換到分支，又做了提交，可以用 cherry-pick 命令挽救。</p>
+<ol>
+<li>用 git checkout branch 将 HEAD 從游離狀態切換到branch ,這時候，git會報 Warning 說有一個提交没有在 branch上，記住這個提交的 change-id（假如 change-id 为 aaaa)</li>
+<li>用 git cherry-pick aaaa將剛剛提交的檔案併到branch中。 </li>
+<li>用 git push 將更新提交到遠程資料庫中。</li>
+</ol>
+</li>
+</ol>
+<h3 id="subtree"><a href="#subtree" class="headerlink" title="subtree"></a>subtree</h3><p>只有一個 git repo</p>
+<p>只需要做一個 commit</p>
+<p><a href="https://blog.devtang.com/2013/05/08/git-submodule-issues/" target="_blank" rel="noopener">參考資料-唐巧的博客</a></p>
+<p><a href="https://gitbook.tw/interview" target="_blank" rel="noopener">Git參考範例 - 高見龍</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/28/django心得報告/" data-id="cjxe8pox10000g64rdwbiyzgf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/25/git/" data-id="cjxe8pox70001g64rhk7yannm" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/">Django</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
 
     </footer>
   </div>
@@ -109,15 +132,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/06/25/jenkins/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Jenkins - AutoBuild 專案
-        
-      </div>
-    </a>
   
+    <a href="/2019/06/25/jenkins/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Jenkins - AutoBuild 專案</div>
+    </a>
   
 </nav>
 
