@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Jenkins - 自動建置app | devilcry&#39;s 開發筆記</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="專案環境 cordova + angular4 hybrid app 承上次建立的jenkins環境是基於將建立之platform資料夾上版控（通常不會這麼做），所以android和iOS不會因為專案設定導致編譯不成功 挑戰： platform不上版控server，將iOS和Android編譯成品出來">
+<meta name="keywords" content="jenkins,CI&#x2F;CD">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jenkins - 自動建置app">
+<meta property="og:url" content="http://yoursite.com/2019/08/29/jenkins-2/index.html">
+<meta property="og:site_name" content="devilcry&#39;s 開發筆記">
+<meta property="og:description" content="專案環境 cordova + angular4 hybrid app 承上次建立的jenkins環境是基於將建立之platform資料夾上版控（通常不會這麼做），所以android和iOS不會因為專案設定導致編譯不成功 挑戰： platform不上版控server，將iOS和Android編譯成品出來">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-30T08:07:11.750Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jenkins - 自動建置app">
+<meta name="twitter:description" content="專案環境 cordova + angular4 hybrid app 承上次建立的jenkins環境是基於將建立之platform資料夾上版控（通常不會這麼做），所以android和iOS不會因為專案設定導致編譯不成功 挑戰： platform不上版控server，將iOS和Android編譯成品出來">
+  
+    <link rel="alternate" href="/atom.xml" title="devilcry&#39;s 開發筆記" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">devilcry&#39;s 開發筆記</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-jenkins-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/29/jenkins-2/" class="article-date">
+  <time datetime="2019-08-29T07:43:53.000Z" itemprop="datePublished">2019-08-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/自動化/">自動化</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Jenkins - 自動建置app
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>專案環境 cordova + angular4 hybrid app</p>
+<p>承上次建立的jenkins環境是基於將建立之platform資料夾上版控（通常不會這麼做），所以android和iOS不會因為專案設定導致編譯不成功</p>
+<p>挑戰： platform不上版控server，將iOS和Android編譯成品出來<br><a id="more"></a></p>
+<h3 id="Android問題"><a href="#Android問題" class="headerlink" title="Android問題"></a>Android問題</h3><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh <span class="string">"./gradlew clean assembleRelease"</span></span><br></pre></td></tr></table></figure>
+<h5 id="描述：新建立Android環境時，並沒有gradlew這指令，所以這行就會報錯。"><a href="#描述：新建立Android環境時，並沒有gradlew這指令，所以這行就會報錯。" class="headerlink" title="描述：新建立Android環境時，並沒有gradlew這指令，所以這行就會報錯。"></a>描述：新建立Android環境時，並沒有gradlew這指令，所以這行就會報錯。</h5><h5 id="思考：開啟Android-Studio後又會自動產生gradlew檔案。"><a href="#思考：開啟Android-Studio後又會自動產生gradlew檔案。" class="headerlink" title="思考：開啟Android Studio後又會自動產生gradlew檔案。"></a>思考：開啟Android Studio後又會自動產生gradlew檔案。</h5><h5 id="解決方法：在android資料夾中下gradle指令就會執行gradle環境建置，就會產生gradlew檔案，然後再將加執行權限。"><a href="#解決方法：在android資料夾中下gradle指令就會執行gradle環境建置，就會產生gradlew檔案，然後再將加執行權限。" class="headerlink" title="解決方法：在android資料夾中下gradle指令就會執行gradle環境建置，就會產生gradlew檔案，然後再將加執行權限。"></a>解決方法：在android資料夾中下gradle指令就會執行gradle環境建置，就會產生gradlew檔案，然後再將加執行權限。</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gradle wrapper</span><br><span class="line">chmod +x ./gradlew</span><br></pre></td></tr></table></figure>
+<h5 id="前置作業-將環境變數設定好，在command-line中可以呼叫gradle指令，如果不能呼叫，請先加入執行權限。"><a href="#前置作業-將環境變數設定好，在command-line中可以呼叫gradle指令，如果不能呼叫，請先加入執行權限。" class="headerlink" title="前置作業: 將環境變數設定好，在command line中可以呼叫gradle指令，如果不能呼叫，請先加入執行權限。"></a>前置作業: 將環境變數設定好，在command line中可以呼叫gradle指令，如果不能呼叫，請先加入執行權限。</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x gradle</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export ANDROID_HOME=/Users/devilcry/Library/Android/sdk</span><br><span class="line">export GRADLE_HOME=/Applications/Android\ Studio\ 3.app/Contents/gradle/gradle-4.6</span><br><span class="line">export PATH=$&#123;PATH&#125;:$&#123;ANDROID_HOME&#125;/platform-tools</span><br><span class="line">export PATH=$&#123;PATH&#125;:$&#123;ANDROID_HOME&#125;/tools</span><br><span class="line">export PATH=$&#123;PATH&#125;:$&#123;GRADLE_HOME&#125;/bin:$&#123;ANDROID_HOME&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="iOS問題"><a href="#iOS問題" class="headerlink" title="iOS問題"></a>iOS問題</h3><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcodebuild archive -scheme XXXX -target XXXX -archivePath .<span class="regexp">/ht_build/</span>$&#123;BUILD_TAG&#125;.xcarchive</span><br></pre></td></tr></table></figure>
+<h5 id="描述：新建立iOS環境時，並沒有進入專案內設定singing勾選automatic-manage-signing，所以在編譯時，會因為找不到相對應的Provisioning-Profile而編譯失敗。"><a href="#描述：新建立iOS環境時，並沒有進入專案內設定singing勾選automatic-manage-signing，所以在編譯時，會因為找不到相對應的Provisioning-Profile而編譯失敗。" class="headerlink" title="描述：新建立iOS環境時，並沒有進入專案內設定singing勾選automatic manage signing，所以在編譯時，會因為找不到相對應的Provisioning Profile而編譯失敗。"></a>描述：新建立iOS環境時，並沒有進入專案內設定singing勾選automatic manage signing，所以在編譯時，會因為找不到相對應的Provisioning Profile而編譯失敗。</h5><h5 id="思考：不使用automatic-manage-signing的功能，手動管理Provisioning-Profile。"><a href="#思考：不使用automatic-manage-signing的功能，手動管理Provisioning-Profile。" class="headerlink" title="思考：不使用automatic manage signing的功能，手動管理Provisioning Profile。"></a>思考：不使用automatic manage signing的功能，手動管理Provisioning Profile。</h5><h5 id="解決方法：先解開keychain，為啥要先解開keychain，可以找上一篇，再利用xcodebuild中的option塞進我們想要的Provisioning-Profile，記得加上-UseModernBuildSystem-NO，不然預設編譯為new-build-system而不是legacy-build-system。"><a href="#解決方法：先解開keychain，為啥要先解開keychain，可以找上一篇，再利用xcodebuild中的option塞進我們想要的Provisioning-Profile，記得加上-UseModernBuildSystem-NO，不然預設編譯為new-build-system而不是legacy-build-system。" class="headerlink" title="解決方法：先解開keychain，為啥要先解開keychain，可以找上一篇，再利用xcodebuild中的option塞進我們想要的Provisioning Profile，記得加上-UseModernBuildSystem=NO，不然預設編譯為new build system而不是legacy build system。"></a>解決方法：先解開keychain，為啥要先解開keychain，可以找上一篇，再利用xcodebuild中的option塞進我們想要的Provisioning Profile，記得加上-UseModernBuildSystem=NO，不然預設編譯為new build system而不是legacy build system。</h5><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">echo <span class="string">"[ Build Info ], STAGING, UnlockKeyChain"</span></span><br><span class="line">security unlock-keychain -p yourpassword <span class="regexp">/Users/</span>XXXX<span class="regexp">/Library/</span>Keychains/login.keychain</span><br><span class="line">echo <span class="string">"[ Build Info ], STAGING, Clean"</span></span><br><span class="line">sh <span class="string">"xcodebuild clean -scheme tcbb-mobile-bank -configuration Release -UseModernBuildSystem=NO"</span></span><br><span class="line"></span><br><span class="line">echo <span class="string">"[ Build Info ], STAGING, Archive"</span></span><br><span class="line">sh <span class="string">"xcodebuild -scheme tcbb-mobile-bank -sdk iphoneos -archivePath ./ht_build/$&#123;BUILD_TAG&#125;.xcarchive -configuration Release -allowProvisioningUpdates CODE_SIGN_IDENTITY='iPhone Developer: xxx (xxxxxx)' PROVISIONING_PROFILE='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' CODE_SIGN_STYLE='Manual' DEVELOPMENT_TEAM='xxxxxxxxxx' -UseModernBuildSystem=NO archive"</span></span><br><span class="line"></span><br><span class="line">echo <span class="string">"[ Build Info ], STAGING, Export Archive"</span></span><br><span class="line">sh <span class="string">"xcodebuild -exportArchive -archivePath ./ht_build/$&#123;BUILD_TAG&#125;.xcarchive -exportOptionsPlist ./ExportOptions.plist -exportPath ./ht_build/$&#123;BUILD_TAG&#125;"</span></span><br></pre></td></tr></table></figure>
+<h5 id="前置作業-CODE-SIGN-IDENTITY塞keychain上面那張憑證-PROVISIONING-PROFILE透過xcode手動下載後，在-User-XXXX-Library-MobileDevice-Provisioning-Profiles內相對應的編號填入這邊-DEVELOPMENT-TEAM則填入team-id，在appleDeveloper網站可以看得到自己的team-id。ExportOptions-plist一樣從xcode內手動執行一次，export出來的ipa就會有這個檔案，這邊需注意的是必須選Manually-manage-singing，這樣所產出的plist才會是我們需要的。"><a href="#前置作業-CODE-SIGN-IDENTITY塞keychain上面那張憑證-PROVISIONING-PROFILE透過xcode手動下載後，在-User-XXXX-Library-MobileDevice-Provisioning-Profiles內相對應的編號填入這邊-DEVELOPMENT-TEAM則填入team-id，在appleDeveloper網站可以看得到自己的team-id。ExportOptions-plist一樣從xcode內手動執行一次，export出來的ipa就會有這個檔案，這邊需注意的是必須選Manually-manage-singing，這樣所產出的plist才會是我們需要的。" class="headerlink" title="前置作業: CODE_SIGN_IDENTITY塞keychain上面那張憑證;PROVISIONING_PROFILE透過xcode手動下載後，在/User/XXXX/Library/MobileDevice/Provisioning Profiles內相對應的編號填入這邊;DEVELOPMENT_TEAM則填入team_id，在appleDeveloper網站可以看得到自己的team_id。ExportOptions.plist一樣從xcode內手動執行一次，export出來的ipa就會有這個檔案，這邊需注意的是必須選Manually manage singing，這樣所產出的plist才會是我們需要的。"></a>前置作業: CODE_SIGN_IDENTITY塞keychain上面那張憑證;PROVISIONING_PROFILE透過xcode手動下載後，在/User/XXXX/Library/MobileDevice/Provisioning Profiles內相對應的編號填入這邊;DEVELOPMENT_TEAM則填入team_id，在appleDeveloper網站可以看得到自己的team_id。ExportOptions.plist一樣從xcode內手動執行一次，export出來的ipa就會有這個檔案，這邊需注意的是必須選Manually manage singing，這樣所產出的plist才會是我們需要的。</h5>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/29/jenkins-2/" data-id="cjzxu3vwy0001js4rew2psfq0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CI-CD/">CI/CD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jenkins/">jenkins</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/07/12/Push/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">iOS Categories</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得報告/">心得報告</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/版控/">版控</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/自動化/">自動化</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI-CD/">CI/CD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/categories/">categories</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/">jenkins</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CI-CD/" style="font-size: 20px;">CI/CD</a> <a href="/tags/Django/" style="font-size: 10px;">Django</a> <a href="/tags/categories/" style="font-size: 10px;">categories</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/jenkins/" style="font-size: 20px;">jenkins</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/08/29/jenkins-2/">Jenkins - 自動建置app</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/12/Push/">iOS Categories</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/25/git/">git submoudle vs git subtree</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/25/jenkins/">Jenkins - AutoBuild 專案</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/28/django心得報告/">django心得報告</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 devilcry<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
