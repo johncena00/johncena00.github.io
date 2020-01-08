@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="devilcry&#39;s 開發筆記">
 <meta property="og:description" content="git管理子項目對於一些比較大的工程,為了便於複用,常常需要抽取子專案。通常專案中的共用UI、共用底層邏輯、共用第三方庫抽出來做git管理子項目。這時候git提供了兩種管理子專案的方式，submodule和subtree。 有人對submodule和subtree的區別做出一個總結:  submodule is link; subtree is copy。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-27T02:10:36.354Z">
+<meta property="og:updated_time" content="2020-01-08T08:36:29.069Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git submoudle vs git subtree">
 <meta name="twitter:description" content="git管理子項目對於一些比較大的工程,為了便於複用,常常需要抽取子專案。通常專案中的共用UI、共用底層邏輯、共用第三方庫抽出來做git管理子項目。這時候git提供了兩種管理子專案的方式，submodule和subtree。 有人對submodule和subtree的區別做出一個總結:  submodule is link; subtree is copy。">
@@ -113,15 +113,15 @@
 </ol>
 </li>
 </ol>
-<h3 id="subtree"><a href="#subtree" class="headerlink" title="subtree"></a>subtree</h3><p>只有一個 git repo</p>
-<p>只需要做一個 commit</p>
+<h3 id="subtree"><a href="#subtree" class="headerlink" title="subtree"></a>subtree</h3><p>只有一個 git repo<br>只需要做一個 commit</p>
+<p>只有一個 repo 也有它的優點在 它就會是一個完整可以 build 的專案<br>而相應於 git submodule 如果相依的依賴 消失的話 專案就無法開發</p>
 <p><a href="https://blog.devtang.com/2013/05/08/git-submodule-issues/" target="_blank" rel="noopener">參考資料-唐巧的博客</a></p>
 <p><a href="https://gitbook.tw/interview" target="_blank" rel="noopener">Git參考範例 - 高見龍</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/25/git/" data-id="ck0m3uyb70004ba4rskxeniq6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/25/git/" data-id="ck552s6k70002ud4rlt6zcuj7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
@@ -132,11 +132,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/07/12/Push/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/08/29/jenkins-2/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          iOS Categories
+          Jenkins for cordova
         
       </div>
     </a>
@@ -160,7 +160,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得報告/">心得報告</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/版控/">版控</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/自動化/">自動化</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/心得報告/">心得報告</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/版控/">版控</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/自動化/">自動化</a></li></ul>
     </div>
   </div>
 
@@ -170,7 +170,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI-CD/">CI/CD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/categories/">categories</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastlane/">fastlane</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/">jenkins</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI-CD/">CI/CD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastlane/">fastlane</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/">jenkins</a></li></ul>
     </div>
   </div>
 
@@ -180,7 +180,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CI-CD/" style="font-size: 20px;">CI/CD</a> <a href="/tags/Django/" style="font-size: 10px;">Django</a> <a href="/tags/categories/" style="font-size: 10px;">categories</a> <a href="/tags/fastlane/" style="font-size: 10px;">fastlane</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/jenkins/" style="font-size: 20px;">jenkins</a>
+      <a href="/tags/CI-CD/" style="font-size: 20px;">CI/CD</a> <a href="/tags/Django/" style="font-size: 10px;">Django</a> <a href="/tags/fastlane/" style="font-size: 10px;">fastlane</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/jenkins/" style="font-size: 20px;">jenkins</a>
     </div>
   </div>
 
@@ -189,7 +189,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li></ul>
     </div>
   </div>
 
@@ -202,15 +202,15 @@
       <ul>
         
           <li>
+            <a href="/2019/12/31/debug工具/">debug工具</a>
+          </li>
+        
+          <li>
             <a href="/2019/09/16/jenkins-3/">Jenkins + Fastlane</a>
           </li>
         
           <li>
             <a href="/2019/08/29/jenkins-2/">Jenkins for cordova</a>
-          </li>
-        
-          <li>
-            <a href="/2019/07/12/Push/">iOS Categories</a>
           </li>
         
           <li>
@@ -233,7 +233,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2019 devilcry<br>
+      &copy; 2020 devilcry<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

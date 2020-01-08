@@ -7,18 +7,18 @@
   
   <title>Jenkins for cordova | devilcry&#39;s 開發筆記</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="專案環境 cordova + angular4 hybrid app 承上次建立的jenkins環境是基於將建立之platform資料夾上版控（通常不會這麼做），所以android和iOS不會因為專案設定導致編譯不成功 挑戰： platform不上版控server，將iOS和Android編譯成品出來">
+  <meta name="description" content="專案環境 cordova + angular4 hybrid app 承上次建立的jenkins環境是基於將建立之platform資料夾上版控（通常不會這麼做），所以android和iOS不會因為專案設定導致編譯不成功 限制： platform不上版控server，將iOS和Android編譯成品出來">
 <meta name="keywords" content="jenkins,CI&#x2F;CD">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Jenkins for cordova">
 <meta property="og:url" content="http://yoursite.com/2019/08/29/jenkins-2/index.html">
 <meta property="og:site_name" content="devilcry&#39;s 開發筆記">
-<meta property="og:description" content="專案環境 cordova + angular4 hybrid app 承上次建立的jenkins環境是基於將建立之platform資料夾上版控（通常不會這麼做），所以android和iOS不會因為專案設定導致編譯不成功 挑戰： platform不上版控server，將iOS和Android編譯成品出來">
+<meta property="og:description" content="專案環境 cordova + angular4 hybrid app 承上次建立的jenkins環境是基於將建立之platform資料夾上版控（通常不會這麼做），所以android和iOS不會因為專案設定導致編譯不成功 限制： platform不上版控server，將iOS和Android編譯成品出來">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-16T07:05:16.659Z">
+<meta property="og:updated_time" content="2019-12-29T14:38:36.976Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jenkins for cordova">
-<meta name="twitter:description" content="專案環境 cordova + angular4 hybrid app 承上次建立的jenkins環境是基於將建立之platform資料夾上版控（通常不會這麼做），所以android和iOS不會因為專案設定導致編譯不成功 挑戰： platform不上版控server，將iOS和Android編譯成品出來">
+<meta name="twitter:description" content="專案環境 cordova + angular4 hybrid app 承上次建立的jenkins環境是基於將建立之platform資料夾上版控（通常不會這麼做），所以android和iOS不會因為專案設定導致編譯不成功 限制： platform不上版控server，將iOS和Android編譯成品出來">
   
     <link rel="alternate" href="/atom.xml" title="devilcry&#39;s 開發筆記" type="application/atom+xml">
   
@@ -93,7 +93,7 @@
       
         <p>專案環境 cordova + angular4 hybrid app</p>
 <p>承上次建立的jenkins環境是基於將建立之platform資料夾上版控（通常不會這麼做），所以android和iOS不會因為專案設定導致編譯不成功</p>
-<p>挑戰： platform不上版控server，將iOS和Android編譯成品出來<br><a id="more"></a></p>
+<p>限制： platform不上版控server，將iOS和Android編譯成品出來<br><a id="more"></a></p>
 <h3 id="Android問題"><a href="#Android問題" class="headerlink" title="Android問題"></a>Android問題</h3><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh <span class="string">"./gradlew clean assembleRelease"</span></span><br></pre></td></tr></table></figure>
 <h5 id="描述：新建立Android環境時，並沒有gradlew這指令，所以這行就會報錯。"><a href="#描述：新建立Android環境時，並沒有gradlew這指令，所以這行就會報錯。" class="headerlink" title="描述：新建立Android環境時，並沒有gradlew這指令，所以這行就會報錯。"></a>描述：新建立Android環境時，並沒有gradlew這指令，所以這行就會報錯。</h5><h5 id="思考：開啟Android-Studio後又會自動產生gradlew檔案。"><a href="#思考：開啟Android-Studio後又會自動產生gradlew檔案。" class="headerlink" title="思考：開啟Android Studio後又會自動產生gradlew檔案。"></a>思考：開啟Android Studio後又會自動產生gradlew檔案。</h5><h5 id="解決方法：在android資料夾中下gradle指令就會執行gradle環境建置，就會產生gradlew檔案，然後再將加執行權限。"><a href="#解決方法：在android資料夾中下gradle指令就會執行gradle環境建置，就會產生gradlew檔案，然後再將加執行權限。" class="headerlink" title="解決方法：在android資料夾中下gradle指令就會執行gradle環境建置，就會產生gradlew檔案，然後再將加執行權限。"></a>解決方法：在android資料夾中下gradle指令就會執行gradle環境建置，就會產生gradlew檔案，然後再將加執行權限。</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gradle wrapper</span><br><span class="line">chmod +x ./gradlew</span><br></pre></td></tr></table></figure>
 <h5 id="前置作業-將環境變數設定好，在command-line中可以呼叫gradle指令，如果不能呼叫，請先加入執行權限。"><a href="#前置作業-將環境變數設定好，在command-line中可以呼叫gradle指令，如果不能呼叫，請先加入執行權限。" class="headerlink" title="前置作業: 將環境變數設定好，在command line中可以呼叫gradle指令，如果不能呼叫，請先加入執行權限。"></a>前置作業: 將環境變數設定好，在command line中可以呼叫gradle指令，如果不能呼叫，請先加入執行權限。</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x gradle</span><br></pre></td></tr></table></figure>
@@ -104,7 +104,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/29/jenkins-2/" data-id="ck0m3uyb90005ba4rm5wnek6m" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/29/jenkins-2/" data-id="ck552s6kc0005ud4r1e6g4ufj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CI-CD/">CI/CD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jenkins/">jenkins</a></li></ul>
@@ -125,9 +125,9 @@
     </a>
   
   
-    <a href="/2019/07/12/Push/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/06/25/git/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">iOS Categories</div>
+      <div class="article-nav-title">git submoudle vs git subtree</div>
     </a>
   
 </nav>
@@ -143,7 +143,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得報告/">心得報告</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/版控/">版控</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/自動化/">自動化</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/心得報告/">心得報告</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/版控/">版控</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/自動化/">自動化</a></li></ul>
     </div>
   </div>
 
@@ -153,7 +153,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI-CD/">CI/CD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/categories/">categories</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastlane/">fastlane</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/">jenkins</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI-CD/">CI/CD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastlane/">fastlane</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jenkins/">jenkins</a></li></ul>
     </div>
   </div>
 
@@ -163,7 +163,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CI-CD/" style="font-size: 20px;">CI/CD</a> <a href="/tags/Django/" style="font-size: 10px;">Django</a> <a href="/tags/categories/" style="font-size: 10px;">categories</a> <a href="/tags/fastlane/" style="font-size: 10px;">fastlane</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/jenkins/" style="font-size: 20px;">jenkins</a>
+      <a href="/tags/CI-CD/" style="font-size: 20px;">CI/CD</a> <a href="/tags/Django/" style="font-size: 10px;">Django</a> <a href="/tags/fastlane/" style="font-size: 10px;">fastlane</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/jenkins/" style="font-size: 20px;">jenkins</a>
     </div>
   </div>
 
@@ -172,7 +172,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li></ul>
     </div>
   </div>
 
@@ -185,15 +185,15 @@
       <ul>
         
           <li>
+            <a href="/2019/12/31/debug工具/">debug工具</a>
+          </li>
+        
+          <li>
             <a href="/2019/09/16/jenkins-3/">Jenkins + Fastlane</a>
           </li>
         
           <li>
             <a href="/2019/08/29/jenkins-2/">Jenkins for cordova</a>
-          </li>
-        
-          <li>
-            <a href="/2019/07/12/Push/">iOS Categories</a>
           </li>
         
           <li>
@@ -216,7 +216,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2019 devilcry<br>
+      &copy; 2020 devilcry<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
